@@ -12,6 +12,14 @@ def get_connection():
     return conn
 
 
+# test it out change the connect
+# conn = db_host = "your-db-host"
+# db_name = "your-db-name"
+# db_user = "your-username"
+# db_password = "your-password"
+# db_port = "5432"
+
+
 def create_tables():
     conn = get_connection()
     cursor = conn.cursor()
