@@ -72,3 +72,21 @@
     </div>
   </body>
 </html>
+<script>
+  const addBtn = document
+    .getElementById('addPetBtn')
+    .addEventListener('click', () => addPet());
+  const addPet = async () => {
+    const petName = document.getElementById('petName').value;
+    const petAge = document.getElementById('petAge').value;
+    const img = document.getElementById('img').value;
+    const newPet = {
+      name: petName,
+      age: petAge,
+      img: img,
+    };
+    const response = await axios.post('http://127.0.0.1:5000/pets/', newPet);
+    alert(response.data.response);
+    window.location.href = '../index.html';
+  };
+</script>

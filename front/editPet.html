@@ -59,16 +59,50 @@
       </div>
     </nav>
     <div class="container text-center">
-      <form class="form-signin">
-        <h1>Add New Pet</h1>
-        <label for="petName">Pet Name:</label>
-        <input type="text" id="petName" name="petName" />
-        <label for="petAge">Pet Age:</label>
-        <input type="number" id="petAge" name="petAge" />
-        <label for="img">Pet Image:</label>
-        <input type="url" id="img" name="img" />
-        <input type="button" value="Submit" id="addPetBtn" />
-      </form>
+      <form class="form-signin" id="editForm"></form>
     </div>
   </body>
 </html>
+<script>
+  const getPetId = () => {
+    const url = new URL(window.location.href);
+    const params = new URLSearchParams(url.search);
+    const petId = params.get('id');
+    return petId;
+  };
+  const displayPetInfo = async () => {
+    const petId = await getPetId();
+    const response = await axios.get(`http://127.0.0.1:5000/pets/${petId}/`);
+    const pet = response.data;
+    const editForm = document.getElementById('editForm');
+    const formHTML = `<h1>Edit Pet</h1>
+        <label for="petName">Pet Name:</label>
+        <input type="text" id="petName" name="petName" value="${pet.name}" />
+        <label for="petAge">Pet Age:</label>
+        <input type="number" id="petAge" name="petAge" value="${pet.age}"/>
+        <label for="img">Pet Image:</label>
+        <input type="url" id="img" name="img" value="${pet.img}" />
+        <input type="button" value="Submit" id="editPetBtn" />`;
+    editForm.innerHTML = formHTML;
+    const editBtn = document
+      .getElementById('editPetBtn')
+      .addEventListener('click', () => editPet(pet.id));
+  };
+  displayPetInfo();
+  const editPet = async (petId) => {
+    const petName = document.getElementById('petName').value;
+    const petAge = document.getElementById('petAge').value;
+    const img = document.getElementById('img').value;
+    const updatedPet = {
+      name: petName,
+      age: petAge,
+      img: img,
+    };
+    const response = await axios.put(
+      `http://127.0.0.1:5000/pets/${petId}`,
+      updatedPet
+    );
+    alert(response.data.response);
+    window.location.href = '../index.html';
+  };
+</script>
