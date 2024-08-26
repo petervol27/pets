@@ -57,6 +57,13 @@
         </div>
       </div>
     </nav>
+    <div class="container">
+      <div
+        class="card alert alert-primary text-center mx-auto"
+        style="width: 18rem"
+        id="weather"
+      ></div>
+    </div>
     <div class="container mt-4">
       <div class="card-group" id="petList"></div>
     </div>
@@ -100,4 +107,20 @@
   const goToEdit = (id) => {
     window.location.href = `./front/editPet.html?id=${id}`;
   };
+  const getWeather = async () => {
+    navigator.geolocation.getCurrentPosition(async (position) => {
+      const latitude = position.coords.latitude;
+      const longitude = position.coords.longitude;
+      const apiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true`;
+      const response = await axios.get(apiUrl);
+      const weather = response.data.current_weather;
+      document.getElementById('weather').innerHTML = `
+                                The Current Weather is:
+                                Temperature: ${weather.temperature}°C<br>
+                                Windspeed: ${weather.windspeed} m/s<br>
+                                Wind Direction: ${weather.winddirection}°<br>
+                            `;
+    });
+  };
+  getWeather();
 </script>
