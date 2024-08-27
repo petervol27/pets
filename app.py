@@ -102,8 +102,7 @@ def edit_pet(id):
 def search():
     conn = get_connection()
     cursor = conn.cursor(cursor_factory=DictCursor)
-    data = request.json
-    search_value = data["searchValue"]
+    search_value = request.args.get("searchValue")
     cursor.execute("SELECT * FROM pets WHERE name ILIKE %s ", (search_value + "%",))
     rows = cursor.fetchall()
     try:
