@@ -129,9 +129,13 @@
   const searchBtn = document
     .getElementById('searchBtn')
     .addEventListener('click', () => search(event));
-  const search = (event) => {
+  const search = async (event) => {
     event.preventDefault();
     const searchValue = document.getElementById('searchForm').value;
     console.log(searchValue);
+    const response = await axios.get(
+      `https://pets-2hb2.onrender.com/pets/${searchValue}/`
+    );
+    console.log(response.data);
   };
 </script>

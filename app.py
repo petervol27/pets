@@ -98,6 +98,13 @@ def edit_pet(id):
         return jsonify({"response": "Pet not found"})
 
 
+@app.route("/pets/name/")
+def search(name):
+    conn = get_connection()
+    cursor = conn.cursor()
+    print(name)
+
+
 if __name__ == "__main__":
     create_tables()
     app.run(debug=True)
