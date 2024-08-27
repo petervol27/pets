@@ -131,7 +131,7 @@
     .addEventListener('click', () => search(event));
   const search = (event) => {
     event.preventDefault();
-    const searchValue = document.getElementById('searchForm');
+    const searchValue = document.getElementById('searchForm').value;
     console.log(searchValue);
   };
 </script>
