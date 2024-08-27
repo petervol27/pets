@@ -98,7 +98,7 @@ def edit_pet(id):
         return jsonify({"response": "Pet not found"})
 
 
-@app.route("/pets/name/")
+@app.route("/pets/<str:name>/")
 def search(name):
     conn = get_connection()
     cursor = conn.cursor()
