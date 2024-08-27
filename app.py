@@ -14,6 +14,7 @@ CORS(
             "origins": [
                 "https://pets-1-zk5k.onrender.com",
                 "https://petervol27.github.io",
+                "https://pets-front.onrender.com/",
             ]
         }
     },
