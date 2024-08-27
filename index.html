@@ -128,8 +128,9 @@
   getWeather();
   const searchBtn = document
     .getElementById('searchBtn')
-    .addEventListener('click', () => search());
-  const search = () => {
+    .addEventListener('click', () => search(event));
+  const search = (event) => {
+    event.preventDefault();
     const searchValue = document.getElementById('searchForm');
     console.log(searchValue);
   };
