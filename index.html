@@ -148,6 +148,7 @@
     const pets = response.data;
     let finalHTML = '';
     petList.classList.remove('card-group');
+    petList.classList.add('mx-auto');
     for (pet of pets) {
       const petHTML = `<div class="card" style="width: 18rem;">
                       <img src="${pet.img}" class="card-img-top" alt="${pet.name}" style="height:17rem;">
