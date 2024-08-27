@@ -84,7 +84,10 @@
         <input type="number" id="petAge" name="petAge" value="${pet.age}"/>
         <label for="img">Pet Image:</label>
         <input type="url" id="img" name="img" value="${pet.img}" />
-        <input type="button" value="Submit" id="editPetBtn" />`;
+        <input type="button" value="Submit" id="editPetBtn" />
+        <label for="animal">Pet Type:</label>
+        <input type="text" id="animal" name="animal" value="${pet.animal}" />
+        `;
     editForm.innerHTML = formHTML;
     const editBtn = document
       .getElementById('editPetBtn')
