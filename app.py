@@ -98,11 +98,20 @@ def edit_pet(id):
         return jsonify({"response": "Pet not found"})
 
 
-@app.route("/pets/<str:name>/")
-def search(name):
+@app.route("/pets/search/", methods=["POST"])
+def search():
     conn = get_connection()
-    cursor = conn.cursor()
-    print(name)
+    cursor = conn.cursor(cursor_factory=DictCursor)
+    data = request.json
+    search_value = data["searchValue"]
+    cursor.execute("SELECT * FROM pets WHERE name ILIKE %s ", (search_value + "%",))
+    rows = cursor.fetchall()
+    try:
+        pets = [dict(row) for row in rows]
+        return pets
+    except Exception as ex:
+        print(ex)
+        return jsonify({"response": "Pet not found"})
 
 
 if __name__ == "__main__":
