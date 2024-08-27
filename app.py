@@ -49,8 +49,13 @@ def pets_list():
     if request.method == "POST":
         new_pet = request.json
         cursor.execute(
-            "INSERT INTO pets(name,img,age) VALUES(%s,%s,%s)",
-            (new_pet.get("name"), new_pet.get("img"), new_pet.get("age")),
+            "INSERT INTO pets(name,img,age,animal) VALUES(%s,%s,%s,%s)",
+            (
+                new_pet.get("name"),
+                new_pet.get("img"),
+                new_pet.get("age"),
+                new_pet.get("animal"),
+            ),
         )
         if cursor.rowcount > 0:
             conn.commit()
