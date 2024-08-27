@@ -25,7 +25,7 @@ def create_tables():
     conn = get_connection()
     cursor = conn.cursor()
     cursor.execute(
-        "CREATE TABLE IF NOT EXISTS pets(id SERIAL PRIMARY KEY,name VARCHAR(50),age INT,img TEXT)"
+        "CREATE TABLE IF NOT EXISTS pets(id SERIAL PRIMARY KEY,name VARCHAR(50),age INT,img TEXT,animal VARCHAR(20))"
     )
     conn.commit()
     conn.close()
@@ -98,7 +98,7 @@ def edit_pet(id):
         return jsonify({"response": "Pet not found"})
 
 
-@app.route("/pets/search/", methods=["POST"])
+@app.route("/pets/search/")
 def search():
     conn = get_connection()
     cursor = conn.cursor(cursor_factory=DictCursor)
