@@ -85,7 +85,10 @@
       age: petAge,
       img: img,
     };
-    const response = await axios.post('http://127.0.0.1:5000/pets/', newPet);
+    const response = await axios.post(
+      'https://pets-2hb2.onrender.com/pets/',
+      newPet
+    );
     alert(response.data.response);
     window.location.href = '../index.html';
   };

@@ -72,7 +72,9 @@
   };
   const displayPetInfo = async () => {
     const petId = await getPetId();
-    const response = await axios.get(`http://127.0.0.1:5000/pets/${petId}/`);
+    const response = await axios.get(
+      `https://pets-2hb2.onrender.com/pets/${petId}/`
+    );
     const pet = response.data;
     const editForm = document.getElementById('editForm');
     const formHTML = `<h1>Edit Pet</h1>
@@ -99,7 +101,7 @@
       img: img,
     };
     const response = await axios.put(
-      `http://127.0.0.1:5000/pets/${petId}`,
+      `https://pets-2hb2.onrender.com/pets/${petId}`,
       updatedPet
     );
     alert(response.data.response);
