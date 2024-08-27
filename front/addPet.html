@@ -82,10 +82,12 @@
     const petName = document.getElementById('petName').value;
     const petAge = document.getElementById('petAge').value;
     const img = document.getElementById('img').value;
+    const animal = document.getElementById('animal').value;
     const newPet = {
       name: petName,
       age: petAge,
       img: img,
+      animal: animal,
     };
     const response = await axios.post(
       'https://pets-2hb2.onrender.com/pets/',
