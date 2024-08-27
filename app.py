@@ -7,7 +7,17 @@ from flask_cors import CORS
 
 app = Flask(__name__)
 load_dotenv()
-CORS(app)
+CORS(
+    app,
+    resources={
+        r"/*": {
+            "origins": [
+                "https://pets-1-zk5k.onrender.com",
+                "https://petervol27.github.io/pets/",
+            ]
+        }
+    },
+)
 
 
 def get_connection():
