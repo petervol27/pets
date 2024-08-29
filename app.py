@@ -120,7 +120,7 @@ def search():
     conn = get_connection()
     cursor = conn.cursor(cursor_factory=DictCursor)
     search_value = request.args.get("searchValue")
-    if search_value.lower == "dog" or "cat":
+    if search_value.lower == "dog" or search_value == "cat":
         cursor.execute("SELECT * FROM pets WHERE animal =%s", (search_value,))
     else:
         cursor.execute("SELECT * FROM pets WHERE name ILIKE %s ", (search_value + "%",))
