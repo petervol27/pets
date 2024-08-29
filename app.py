@@ -120,7 +120,10 @@ def search():
     conn = get_connection()
     cursor = conn.cursor(cursor_factory=DictCursor)
     search_value = request.args.get("searchValue")
-    cursor.execute("SELECT * FROM pets WHERE name ILIKE %s ", (search_value + "%",))
+    if search_value == 'dog' or 'cat':
+        cursor.execute("SELECT * FROM pets WHERE animal =%s",(search_value,))
+    else:    
+        cursor.execute("SELECT * FROM pets WHERE name ILIKE %s ", (search_value + "%",))
     rows = cursor.fetchall()
     try:
         pets = [dict(row) for row in rows]
