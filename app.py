@@ -84,7 +84,7 @@ def get_pet(id):
         return jsonify({"response": "Pet not found"})
 
 
-@app.route("/pets/<int:id>", methods=["DELETE"])
+@app.route("/pets/<int:id>/", methods=["DELETE"])
 def delete_pet(id):
     conn = get_connection()
     cursor = conn.cursor(cursor_factory=DictCursor)
